@@ -6,12 +6,21 @@
 // DEBUGPRINT0: Very important
 // DEBUGPRINT3: Not important
 
-#if DEBUG >= 0
+#ifndef __Debug1212123___
+#define __Debug1212123___
+
+#if DEBUGLEVEL >= 0
 #define DEBUGPRINT0(x) Serial.print(x)
 #define DEBUGPRINTLN0(x) Serial.println(x)
+#define DEBUGSERIALBEGIN(x) Serial.begin(x)
+#define DEBUGWHILENOTSERIAL while (!Serial)
+#define DEBUGSERIALFLUSH Serial.flush()
 #else
 #define DEBUGPRINT0(x)
 #define DEBUGPRINTLN0(x)
+#define DEBUGSERIALBEGIN(x)
+#define DEBUGWHILENOTSERIAL
+#define DEBUGSERIALFLUSH
 #endif
 
 #if DEBUG >= 1
@@ -40,8 +49,4 @@
 
 // fast port handling
 
-#define CLR(x,y) (x&=(~(1<<y)))
-#define SET(x,y) (x|=(1<<y))
-
-#define testPinLow(pin) {digitalWrite(pin, LOW); digitalWrite(pin, HIGH); }
-#define testPinhigh(pin) {digitalWrite(pin, HIGH); digitalWrite(pin, LOW); }
+#endif
